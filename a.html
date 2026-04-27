@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vaelux</title>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='white'/><text x='50' y='58' font-size='60' text-anchor='middle' fill='%23070b16' font-family='Arial'>V</text></svg>">
+
+<style>
+:root{
+  --bg1:#eef2ff;
+  --bg2:#fdf2f8;
+  --bg3:#ecfeff;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --blue:#2563eb;
+  --purple:#a855f7;
+  --red:#ef4444;
+  --shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+html[data-theme='dark']{
+  --bg1:#070b16;
+  --bg2:#0b1220;
+  --bg3:#0f172a;
+  --card:#0f1730;
+  --text:#eaf0ff;
+  --muted:#93a4c7;
+  --shadow:0 10px 30px rgba(0,0,0,0.35);
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:system-ui,Arial;
+background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+color:var(--text);
+transition:0.4s;
+overflow-x:hidden;
+padding-bottom:120px;
+}
+
+#particles{
+position:fixed;
+inset:0;
+z-index:0;
+pointer-events:none;
+}
+
+.container{
+position:relative;
+z-index:2;
+max-width:1100px;
+margin:auto;
+padding:30px 16px;
+}
+
+.hero{text-align:center}
+
+.hero h1{font-size:clamp(38px,6vw,60px);margin:0}
+
+.hero span{
+background:linear-gradient(270deg,var(--purple),var(--red),var(--blue));
+background-size:600% 600%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:lux 5s infinite;
+}
+
+.hero p{color:var(--muted)}
+
+.cta{
+margin-top:18px;
+padding:14px 26px;
+border:none;
+border-radius:14px;
+font-weight:700;
+color:white;
+cursor:pointer;
+background:linear-gradient(270deg,var(--purple),var(--red),var(--blue));
+background-size:300% 300%;
+animation:btn 6s infinite;
+}
+
+.theme{
+position:fixed;
+top:14px;
+right:14px;
+padding:10px 14px;
+border-radius:12px;
+border:none;
+cursor:pointer;
+background:var(--card);
+color:var(--text);
+box-shadow:var(--shadow);
+z-index:10;
+}
+
+.section{margin-top:40px}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:14px;
+}
+
+.card{
+background:var(--card);
+border-radius:18px;
+padding:16px;
+box-shadow:var(--shadow);
+}
+
+.small-btn{
+width:100%;
+padding:10px;
+border-radius:12px;
+border:none;
+cursor:pointer;
+color:white;
+background:linear-gradient(270deg,var(--purple),var(--red),var(--blue));
+animation:btn 5s infinite;
+}
+
+.gamehub{
+margin:60px auto 40px;
+text-align:center;
+padding:22px;
+border-radius:18px;
+background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(37,99,235,0.15));
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:var(--shadow);
+cursor:pointer;
+}
+
+.telegram-btn{
+position:fixed;
+bottom:14px;
+left:50%;
+transform:translateX(-50%);
+padding:14px 22px;
+border-radius:999px;
+border:none;
+cursor:pointer;
+font-weight:700;
+color:white;
+background:linear-gradient(270deg,#2ee6ff,#2563eb,#a855f7);
+animation:btn 5s infinite;
+z-index:20;
+}
+
+/* MODAL FIX */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(8px);
+z-index:999;
+align-items:center;
+justify-content:center;
+}
+
+.modal-box{
+background:var(--card);
+padding:20px;
+border-radius:18px;
+width:90%;
+max-width:420px;
+box-shadow:var(--shadow);
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-top:10px;
+}
+
+.close{
+position:absolute;
+right:20px;
+top:20px;
+border:none;
+background:#ef4444;
+color:white;
+padding:6px 10px;
+border-radius:10px;
+cursor:pointer;
+}
+
+@keyframes lux{0%{background-position:0%}100%{background-position:200%}}
+@keyframes btn{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<button class="theme" onclick="toggleTheme()">🌙 / ☀️</button>
+
+<div class="container">
+
+<div class="hero">
+<h1>Vae<span>lux</span></h1>
+<p>G‘oyangizni tizimga aylantiring</p>
+<button class="cta" onclick="openModal()">G'oyam bor!</button>
+</div>
+
+<div class="section">
+<h2>🤖 Bot Templates</h2>
+<div class="cards">
+
+<div class="card">
+<h3>⚡ Tez javob bot</h3>
+<button class="small-btn" onclick="go('Tez javob bot kerak')">Create</button>
+</div>
+
+<div class="card">
+<h3>🤖 Admin bot</h3>
+<button class="small-btn" onclick="go('Admin bot kerak')">Create</button>
+</div>
+
+<div class="card">
+<h3>🎮 Game bot</h3>
+<button class="small-btn" onclick="go('Game bot kerak')">Create</button>
+</div>
+
+</div>
+</div>
+
+<div class="gamehub" onclick="window.open('https://astral-mc7.github.io/Vaelux-gamehub/','_blank')">
+<h2>Vae<span style="background:linear-gradient(270deg,#a855f7,#2563eb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">LUX</span> GameHub</h2>
+<p>Click to open gaming platform</p>
+</div>
+
+</div>
+
+<!-- TELEGRAM -->
+<button class="telegram-btn" onclick="window.open('https://t.me/vaelux','_blank')">📨 Vaelux Telegram</button>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-box">
+<button class="close" onclick="closeModal()">X</button>
+<h3>G‘oyangizni yozing</h3>
+<input id="idea" placeholder="Masalan: tez bot kerak..." />
+<button class="cta" onclick="sendIdea()">TAYYOR</button>
+</div>
+</div>
+
+<script>
+// --- MODAL CONTROL ---
+function openModal(){
+  const m=document.getElementById('modal');
+  m.style.display='flex';
+}
+
+function closeModal(){
+  document.getElementById('modal').style.display='none';
+}
+
+// IMPORTANT: ensure global access
+window.openModal=openModal;
+window.closeModal=closeModal;
+
+function sendIdea(){
+  const input=document.getElementById('idea');
+  const t=input ? input.value.trim() : '';
+  if(!t) return;
+  window.open('https://t.me/musoxonman?text='+encodeURIComponent(t),'_blank');
+  input.value='';
+  closeModal();
+}
+
+window.sendIdea=sendIdea;
+
+function go(t){
+  window.open('https://t.me/musoxonman?text='+encodeURIComponent(t),'_blank');
+}
+window.go=go;
+
+function toggleTheme(){
+  document.documentElement.dataset.theme=
+  (document.documentElement.dataset.theme==='dark')?'light':'dark';
+}
+window.toggleTheme=toggleTheme;
+
+// particles
+const c=document.getElementById('particles');
+const x=c.getContext('2d');
+c.width=innerWidth;c.height=innerHeight;
+
+let p=[];
+for(let i=0;i<60;i++){
+  p.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*3+1,dx:(Math.random()-0.5),dy:(Math.random()-0.5)});
+}
+
+function draw(){
+  x.clearRect(0,0,c.width,c.height);
+  for(let i of p){
+    x.beginPath();
+    x.arc(i.x,i.y,i.r,0,Math.PI*2);
+    x.fillStyle="rgba(168,85,247,0.4)";
+    x.fill();
+    i.x+=i.dx;i.y+=i.dy;
+    if(i.x<0||i.x>c.width)i.dx*=-1;
+    if(i.y<0||i.y>c.height)i.dy*=-1;
+  }
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+
+</body>
+</html>
